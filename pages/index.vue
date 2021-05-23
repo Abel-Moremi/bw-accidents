@@ -1,13 +1,13 @@
 <template>
   <div>
-    <line-chart-component />
+    <donut-chart-component />
   </div>
 </template>
 
 <script>
-import LineChartComponent from '~/components/LineChartComponent.vue'
+import DonutChartComponent from '~/components/DonutChartComponent.vue'
 export default {
-  components: { LineChartComponent },
+  components: { DonutChartComponent },
 }
 </script>
 
