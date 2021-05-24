@@ -12,7 +12,10 @@
     "@nuxtjs/axios": "^5.12.5",
     "apexcharts": "^3.26.3",
     "core-js": "^3.8.3",
+    "install": "^0.13.0",
     "nuxt": "^2.14.12",
+    "tailwindcss-gradients": "^3.0.0",
+    "tailwindcss-plugins": "^0.3.0",
     "vue-apexcharts": "^1.6.1"
   },
   "devDependencies": {
