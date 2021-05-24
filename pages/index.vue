@@ -17,12 +17,16 @@
         </ul>
       </nav>
     </div>
-    <div class="flex-auto h-screen overflow-y-auto p-6" />
+    <div class="flex-auto h-screen overflow-y-auto p-6">
+      <info-cards />
+    </div>
   </div>
 </template>
 
 <script>
+import InfoCards from '~/components/InfoCards.vue'
 export default {
+  components: { InfoCards },
   
 }
 </script>
