@@ -23,10 +23,12 @@ export default {
         infoData: {
             type: Object,
             required: false,
-            default: {
-                "Population" : "2,500,000",
-                "Total Accidents" : "5000",
-                "Fatalities": "400",
+            default: function (){
+                return {
+                    "Population" : "2,500,000",
+                    "Total Accidents" : "5000",
+                    "Fatalities": "400",
+                }
             }
         }
     }
