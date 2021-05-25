@@ -19,14 +19,18 @@
     </div>
     <div class="flex-auto h-screen overflow-y-auto p-6">
       <info-cards />
+      <line-chart-component />
+      <donut-chart-component />
     </div>
   </div>
 </template>
 
 <script>
+import DonutChartComponent from '~/components/DonutChartComponent.vue'
 import InfoCards from '~/components/InfoCards.vue'
+import LineChartComponent from '~/components/LineChartComponent.vue'
 export default {
-  components: { InfoCards },
+  components: { InfoCards, LineChartComponent, DonutChartComponent },
   
 }
 </script>
