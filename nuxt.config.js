@@ -1,4 +1,11 @@
 export default {
+  target: 'static',
+  router: {
+    base: '/bw-accidents/'
+  },
+  generate: {
+    fallback: true
+  },
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'bw-accidents',
