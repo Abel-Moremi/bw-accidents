@@ -29,10 +29,12 @@ export default {
         return{
             series: [{
                 name: "Total Accidents",
+                type: 'line',
                 data: this.totalAccidents
             },
             {
                 name: "Fatalities",
+                type: 'column',
                 data: this.fatalities
             }],
             chartOptions: {
@@ -60,8 +62,19 @@ export default {
                     },
                 },
                 xaxis: {
-                    categories: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'],
-                }
+                    categories: ['2013', '2014', '2015', '2016', '2017', '2018', '2019'],
+                },
+                yaxis: [{
+                    title: {
+                        text: 'Total Accidents',
+                    },
+                    
+                    }, {
+                    opposite: true,
+                    title: {
+                        text: 'Fatalities'
+                    }
+                }]
             },      
 
         }

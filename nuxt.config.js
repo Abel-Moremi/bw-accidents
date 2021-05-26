@@ -58,7 +58,7 @@ export default {
           measurementId: process.env.NUXT_APP_FIREBASE_MEASUREMENT_ID
         },
         services: {
-          firestore: true,
+          firestore: { ssr: true},
         }
       }
     ]

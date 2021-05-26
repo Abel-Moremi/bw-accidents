@@ -1,5 +1,4 @@
 <template>
-
   <div class="flex min-h-screen bg-primary-50">
     <div class="bg-white py-4 px-3 md:py-6 md:px-8">
       <nav>
@@ -22,7 +21,7 @@
         2019 ROAD ACCIDENT ANALYTICS
       </h1>
       <info-cards />
-      <line-chart-component />
+      <line-chart-component :fatalities="fatalitiesArray" :totalAccidents="crashArray"/>
       <div class="lg:flex sm:grid items-center justify-between">
         <div class="bg-white w-full mr-2 mt-4 items-center justify-between">
           <donut-chart-component />
@@ -47,6 +46,85 @@ export default {
     DonutChartComponent, 
     NoteComponent 
   },
+
+  async asyncData({app, params, error}) {
+    let crashArray = []
+    let fatalitiesArray = []
+    try {
+
+      let annuRef = app.$fire.firestore.collection('annual-stats');
+      let snapshot = await annuRef.get();
+      snapshot.forEach(doc => {
+        if(doc.id == "crashes"){
+          //console.log(doc.id, '=>', doc.data())
+          for(var key in doc.data()){
+            crashArray.push(doc.data()[key])
+          }
+          console.log(doc.data)
+        }else if(doc.id == "fatalities") {
+          // console.log(doc.id, '=>', doc.data())
+          for(var key in doc.data()){
+            fatalitiesArray.push(doc.data()[key])
+          }
+        }
+      });
+  
+    } catch (e) {
+      // TODO: error handling
+      console.error(e)
+    }
+    return {
+      crashArray, 
+      fatalitiesArray
+    }
+  },
+  methods: {
+    async getTotalCrashes(){
+      let crashArray = []
+     
+      let annuRef = this.$fire.firestore.collection('annual-stats');
+      let snapshot = await annuRef.get();
+      snapshot.forEach(doc => {
+        if(doc.id == "crashes"){
+          //console.log(doc.id, '=>', typeof(doc.data()))
+          for(key in doc.data){
+            crashArray.push(doc.data[key])
+          }
+        }
+      });
+      console.log(crashArray)
+      return crashArray
+      
+    },
+    async getTotalFataliites(){
+
+      let fatalitiesArray = []
+      let annuRef = this.$fire.firestore.collection('annual-stats');
+      let snapshot = await annuRef.get();
+      snapshot.forEach(doc => {
+        if(doc.id == "fatalities"){
+         // console.log(doc.id, '=>', doc.data())
+          for(key in doc.data){
+            fatalitiesArray.push(doc.data[key])
+          }
+        }
+      });
+
+      console.log(fatalitiesArray)
+      return fatalitiesArray
+    },
+
+    async getAllValuesFromObject(object){
+      let array
+      let obj = await object
+      for(key in obj) {
+          array.push(key)
+      }
+
+      return array
+    }
+  }
+
 }
 </script>
 
