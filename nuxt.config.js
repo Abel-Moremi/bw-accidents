@@ -45,6 +45,23 @@ export default {
   modules: [
     // https://go.nuxtjs.dev/axios
     '@nuxtjs/axios',
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: process.env.NUXT_APP_FIREBASE_API_KEY,
+          authDomain: process.env.NUXT_APP_AUTH_DOMAIN,
+          projectId: process.env.NUXT_APP_FIREBASE_PROJECT_ID,
+          storageBucket: process.env.NUXT_APP_FIREBASE_STORAGE_BUCKET,
+          messagingSenderId: process.env.NUXT_APP_FIREBASE_MESSAGE_SENDER_ID,
+          appId: process.env.NUXT_APP_FIREBASE_APP_ID,
+          measurementId: process.env.NUXT_APP_FIREBASE_MEASUREMENT_ID
+        },
+        services: {
+          firestore: true,
+        }
+      }
+    ]
   ],
 
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
