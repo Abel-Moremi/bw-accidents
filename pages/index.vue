@@ -18,9 +18,19 @@
       </nav>
     </div>
     <div class="flex-auto h-screen overflow-y-auto p-6">
+      <h1 class="text-2xl text-primary-500 font-bold leading-normal mt-0 mb-2 text-emerald-800 text-center">
+        2019 ROAD ACCIDENT ANALYTICS
+      </h1>
       <info-cards />
       <line-chart-component />
-      <donut-chart-component />
+      <div class="lg:flex sm:grid items-center justify-between">
+        <div class="bg-white w-full mr-2 mt-4 items-center justify-between">
+          <donut-chart-component />
+        </div>
+        <div class="bg-white w-full lg:ml-2 mt-4 items-center justify-between">
+          <note-component />
+        </div>
+      </div>
     </div>
   </div>
 </template>
@@ -29,9 +39,14 @@
 import DonutChartComponent from '~/components/DonutChartComponent.vue'
 import InfoCards from '~/components/InfoCards.vue'
 import LineChartComponent from '~/components/LineChartComponent.vue'
+import NoteComponent from '~/components/NoteComponent.vue'
 export default {
-  components: { InfoCards, LineChartComponent, DonutChartComponent },
-  
+  components: { 
+    InfoCards, 
+    LineChartComponent, 
+    DonutChartComponent, 
+    NoteComponent 
+  },
 }
 </script>
 

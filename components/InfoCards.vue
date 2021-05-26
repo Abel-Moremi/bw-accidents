@@ -1,6 +1,6 @@
 <template>
-    <div class="pt-6 w-full md:w-2/3">
-        <section class="w-full md:pl-8">
+    <div class="pt-6 w-full md:w-full">
+        <section class="w-full ">
             <header class="pb-4">
                 <h2 class="text-xl">
                     Statistics
