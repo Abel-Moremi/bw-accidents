@@ -15,7 +15,9 @@ export default {
         sectionalData: {
             type: Array,
             required: false,
-            default: [44, 55, 13, 33] 
+            default: function () {
+                return [44, 55, 13, 33] 
+            }
         }
     },
     data() {
