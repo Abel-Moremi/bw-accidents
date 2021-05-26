@@ -20,15 +20,25 @@
 <script>
 export default {
     props: {
-        infoData: {
-            type: Object,
-            required: false,
-            default: function (){
-                return {
-                    "Population" : "2,500,000",
-                    "Total Accidents" : "5000",
-                    "Fatalities": "400",
-                }
+        population: {
+            type: Number,
+            required: true
+        },
+        totalAccidents: {
+            type: Number,
+            required: true
+        },
+        totalFatalities: {
+            type: Number,
+            required: true 
+        }
+    },
+    data(){
+        return{
+            infoData: {
+                "Population" : this.population.toLocaleString(),
+                "Total Accidents" : this.totalAccidents.toLocaleString(),
+                "Fatalities": this.totalFatalities, 
             }
         }
     }
