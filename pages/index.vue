@@ -4,14 +4,24 @@
       <nav>
         <ul class="py-4">
           <li class="py-2">
-            <nuxt-link to="/" class="nav-link">
+            <a class="nav-link" v-on:click="switchTo2019()">
               <!-- icon svg -->
-            </nuxt-link>
+            </a>
+          </li>
+          <li class="py-2" v-on:click="switchTo2018()">
+            <a class="nav-link">
+              <!-- icon svg -->
+            </a>
           </li>
           <li class="py-2">
-            <nuxt-link to="/styleguide" class="nav-link">
+            <a class="nav-link">
               <!-- icon svg -->
-            </nuxt-link>
+            </a>
+          </li>
+          <li class="py-2">
+            <a class="nav-link">
+              <!-- icon svg -->
+            </a>
           </li>
         </ul>
       </nav>
@@ -20,7 +30,7 @@
       <h1 class="text-2xl text-primary-500 font-bold leading-normal mt-0 mb-2 text-emerald-800 text-center">
         {{ year }} ROAD ACCIDENT ANALYTICS
       </h1>
-      <info-cards :population="populationData[year]" :totalAccidents="crashData[year]" :totalFatalities="fatalitiesData[year]"/>
+      <info-cards v-bind:population="population" v-bind:totalAccidents="totalAccidents" v-bind:totalFatalities="totalFatalities"/>
       <line-chart-component :fatalities="fatalitiesArray" :totalAccidents="crashArray"/>
       <div class="lg:flex sm:grid items-center justify-between">
         <div class="bg-white w-full mr-2 mt-4 items-center justify-between">
@@ -54,22 +64,30 @@ export default {
     let fatalitiesData = {}
     let populationData = {}
 
+    let totalAccidents = 0
+    let totalFatalities = 0
+    let population = 0
+    let year = 2019
+
     try {
       let annuRef = app.$fire.firestore.collection('annual-stats');
       let snapshot = await annuRef.get();
       snapshot.forEach(doc => {
         if(doc.id == "crashes"){
           crashData = doc.data()
+          totalAccidents = crashData[year]
           for(var key in doc.data()){
             crashArray.push(doc.data()[key])
           }
         }else if(doc.id == "fatalities") {
           fatalitiesData = doc.data()
+          totalFatalities = fatalitiesData[year]
           for(var key in doc.data()){
             fatalitiesArray.push(doc.data()[key])
           }
         }else if(doc.id == "population") {
           populationData = doc.data()
+          population = populationData[year]
         }
       });
   
@@ -82,19 +100,32 @@ export default {
       fatalitiesArray,
       crashData,
       fatalitiesData,
-      populationData
-    }
-  },
-  data(){
-    return{
-      year: 2019
+      populationData,
+      year,
+      totalAccidents,
+      totalFatalities,
+      population
     }
   },
   methods: {
     switchTo2019(){
-      this.year = 2019
+      this.yearSwitcher(2019)
+    },
+    switchTo2018(){
+      this.yearSwitcher(2018) 
+    },
+    switchTo2017(){
+      this.yearSwitcher(2017)
+    },
+    switchTo2016(){
+      this.yearSwitcher(2016)
+    },
+    yearSwitcher(year){
+      this.year = year
+      this.totalAccidents = this.crashData[year]
+      this.totalFatalities = this.fatalitiesData[year]
+      this.population = this.populationData[year]
     }
-    
   }
 
 }
