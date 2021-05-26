@@ -11,9 +11,16 @@
 </template>
 <script>
 export default {
+    props: {
+        sectionalData: {
+            type: Array,
+            required: false,
+            default: [44, 55, 13, 33] 
+        }
+    },
     data() {
         return{
-            series: [44, 55, 13, 33],
+            series: this.sectionalData,
             chartOptions: {
                 chart: {
                     width: 380,
@@ -22,6 +29,7 @@ export default {
                 dataLabels: {
                     enabled: false
                 },
+                labels: ['Accidents', 'Fatalities', 'Serious Inj', 'Minor Inj'],
                 responsive: [{
                     breakpoint: 480,
                     options: {
