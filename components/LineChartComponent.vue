@@ -1,6 +1,6 @@
 <template>
     <client-only>
-        <div class="shadow">
+        <div class="shadow rounded-lg bg-white pt-6 w-full ">
             <div id="chart">
                 <apexcharts type="line" height="350" :options="chartOptions" :series="series"></apexcharts>
             </div>
@@ -9,11 +9,27 @@
 </template>
 <script>
 export default {
+    props: {
+        totalAccidents: {
+            type: Array,
+            required: false,
+            default: [10, 41, 35, 51, 49, 62, 69, 91, 148] 
+        },
+         fatalities: {
+            type: Array,
+            required: false,
+            default: [5, 0, 15, 20, 25, 30, 35, 45, 90]
+        },
+    },
     data() {
         return{
             series: [{
-                name: "Desktops",
-                data: [10, 41, 35, 51, 49, 62, 69, 91, 148]
+                name: "Total Accidents",
+                data: this.totalAccidents
+            },
+            {
+                name: "Fatalities",
+                data: this.fatalities
             }],
             chartOptions: {
                 chart: {
@@ -30,17 +46,17 @@ export default {
                     curve: 'straight'
                 },
                 title: {
-                    text: 'Product Trends by Month',
-                    align: 'left'
+                    text: 'Road Traffic Accidents over the years',
+                    align: 'center'
                 },
                 grid: {
                     row: {
-                    colors: ['#f3f3f3', 'transparent'], // takes an array which will be repeated on columns
+                    colors: ['#f3f3f3', 'transparent'], 
                     opacity: 0.5
                     },
                 },
                 xaxis: {
-                    categories: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep'],
+                    categories: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'],
                 }
             },      
 
