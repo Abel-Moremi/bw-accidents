@@ -8,7 +8,7 @@
             </header> 
             <div class="flex flex-wrap md:-mr-6">
                 <div v-for="(value, index) in infoData" :key="index" class="w-full md:w-1/3 md:pr-6 pb-4">
-                    <div class="rounded-lg p-8 bg-white text-primary-500 hover:bg-complementary-300 hover:text-white">
+                    <div class="rounded-lg p-8 bg-white text-primary-500 hover:bg-primary-300 hover:text-white">
                         <strong class="text-xl">{{ value }}</strong> 
                         <p>{{ index }}</p>
                     </div>
@@ -20,15 +20,25 @@
 <script>
 export default {
     props: {
-        infoData: {
-            type: Object,
-            required: false,
-            default: function (){
-                return {
-                    "Population" : "2,500,000",
-                    "Total Accidents" : "5000",
-                    "Fatalities": "400",
-                }
+        population: {
+            type: Number,
+            required: true
+        },
+        totalAccidents: {
+            type: Number,
+            required: true
+        },
+        totalFatalities: {
+            type: Number,
+            required: true 
+        }
+    },
+    data(){
+        return{
+            infoData: {
+                "Population" : this.population.toLocaleString(),
+                "Total Accidents" : this.totalAccidents.toLocaleString(),
+                "Fatalities": this.totalFatalities, 
             }
         }
     }
