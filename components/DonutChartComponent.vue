@@ -1,6 +1,6 @@
 <template>
     <client-only>
-        <div class="shadow">     
+        <div class="shadow rounded-lg">     
             <div class="chart-wrap">
                 <div id="chart">
                     <apexcharts type="donut" width="380" :options="chartOptions" :series="series"></apexcharts>
@@ -12,17 +12,22 @@
 <script>
 export default {
     props: {
-        sectionalData: {
-            type: Array,
-            required: false,
-            default: function () {
-                return [44, 55, 13, 33] 
-            }
+        minorInjur: {
+            type: Number,
+            required: true
+        },
+        seriousInjur: {
+            type: Number,
+            required: true
+        },
+        fatalities: {
+            type: Number,
+            required: true
         }
     },
     data() {
         return{
-            series: this.sectionalData,
+            series: [this.fatalities, this.seriousInjur, this.minorInjur],
             chartOptions: {
                 chart: {
                     width: 380,
@@ -31,7 +36,7 @@ export default {
                 dataLabels: {
                     enabled: false
                 },
-                labels: ['Accidents', 'Fatalities', 'Serious Inj', 'Minor Inj'],
+                labels: ['Fatalities', 'Serious Inj', 'Minor Inj'],
                 responsive: [{
                     breakpoint: 480,
                     options: {

@@ -30,11 +30,11 @@
       <h1 class="text-2xl text-primary-500 font-bold leading-normal mt-0 mb-2 text-emerald-800 text-center">
         {{ year }} ROAD ACCIDENT ANALYTICS
       </h1>
-      <info-cards v-bind:population="population" v-bind:totalAccidents="totalAccidents" v-bind:totalFatalities="totalFatalities"/>
+      <info-cards :population="population" :totalAccidents="totalAccidents" :totalFatalities="totalFatalities"/>
       <line-chart-component :fatalities="fatalitiesArray" :totalAccidents="crashArray"/>
       <div class="lg:flex sm:grid items-center justify-between">
         <div class="bg-white w-full mr-2 mt-4 items-center justify-between">
-          <donut-chart-component />
+          <donut-chart-component :fatalities="totalFatalities" :minorInjur="minorInjury" :seriousInjur="seriousInjury"/>
         </div>
         <div class="bg-white w-full lg:ml-2 mt-4 items-center justify-between">
           <note-component />
@@ -63,9 +63,13 @@ export default {
     let crashData = {}
     let fatalitiesData = {}
     let populationData = {}
+    let minorInjuryData = {}
+    let seriousInjuryData = {}
 
     let totalAccidents = 0
     let totalFatalities = 0
+    let minorInjury = 0
+    let seriousInjury = 0
     let population = 0
     let year = 2019
 
@@ -88,6 +92,12 @@ export default {
         }else if(doc.id == "population") {
           populationData = doc.data()
           population = populationData[year]
+        }else if(doc.id == "minor-injuries") {
+          minorInjuryData = doc.data()
+          minorInjury = minorInjuryData[year]
+        }else if(doc.id == "serious-injury") {
+          seriousInjuryData = doc.data()
+          seriousInjury = seriousInjuryData[year]
         }
       });
   
@@ -104,7 +114,11 @@ export default {
       year,
       totalAccidents,
       totalFatalities,
-      population
+      population,
+      minorInjuryData,
+      minorInjury,
+      seriousInjury,
+      seriousInjuryData
     }
   },
   methods: {
@@ -125,6 +139,8 @@ export default {
       this.totalAccidents = this.crashData[year]
       this.totalFatalities = this.fatalitiesData[year]
       this.population = this.populationData[year]
+      this.minorInjury = this.minorInjuryData[year]
+      this.seriousInjury = this.seriousInjuryData[year]
     }
   }
 
