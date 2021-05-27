@@ -13,22 +13,28 @@ export default {
         totalAccidents: {
             type: Array,
             required: false,
-            default: [10, 41, 35, 51, 49, 62, 69, 91, 148] 
+            default: function (){
+                return [10, 41, 35, 51, 49, 62, 69, 91, 148] 
+            }
         },
-         fatalities: {
+        fatalities: {
             type: Array,
             required: false,
-            default: [5, 0, 15, 20, 25, 30, 35, 45, 90]
+             default: function (){
+                return [5, 0, 15, 20, 25, 30, 35, 45, 90] 
+            } 
         },
     },
     data() {
         return{
             series: [{
                 name: "Total Accidents",
+                type: 'line',
                 data: this.totalAccidents
             },
             {
                 name: "Fatalities",
+                type: 'column',
                 data: this.fatalities
             }],
             chartOptions: {
@@ -56,8 +62,19 @@ export default {
                     },
                 },
                 xaxis: {
-                    categories: ['2011', '2012', '2013', '2014', '2015', '2016', '2017', '2018', '2019'],
-                }
+                    categories: ['2013', '2014', '2015', '2016', '2017', '2018', '2019'],
+                },
+                yaxis: [{
+                    title: {
+                        text: 'Total Accidents',
+                    },
+                    
+                    }, {
+                    opposite: true,
+                    title: {
+                        text: 'Fatalities'
+                    }
+                }]
             },      
 
         }
