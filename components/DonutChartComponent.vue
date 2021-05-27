@@ -44,7 +44,7 @@ export default {
                         width: 200
                         },
                         legend: {
-                        show: false
+                            show: false
                         }
                     }
                 }],

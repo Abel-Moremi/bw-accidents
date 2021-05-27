@@ -8,7 +8,7 @@
             </header> 
             <div class="flex flex-wrap md:-mr-6">
                 <div v-for="(value, index) in infoData" :key="index" class="w-full md:w-1/3 md:pr-6 pb-4">
-                    <div class="rounded-lg p-8 bg-white text-primary-500 hover:bg-complementary-300 hover:text-white">
+                    <div class="rounded-lg p-8 bg-white text-primary-500 hover:bg-primary-300 hover:text-white">
                         <strong class="text-xl">{{ value }}</strong> 
                         <p>{{ index }}</p>
                     </div>

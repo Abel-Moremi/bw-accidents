@@ -13,12 +13,12 @@
               <!-- icon svg -->
             </a>
           </li>
-          <li class="py-2">
+          <li class="py-2" v-on:click="switchTo2017()">
             <a class="nav-link">
               <!-- icon svg -->
             </a>
           </li>
-          <li class="py-2">
+          <li class="py-2" v-on:click="switchTo2016()">
             <a class="nav-link">
               <!-- icon svg -->
             </a>
@@ -37,7 +37,7 @@
           <donut-chart-component :fatalities="totalFatalities" :minorInjur="minorInjury" :seriousInjur="seriousInjury"/>
         </div>
         <div class="bg-white w-full lg:ml-2 mt-4 items-center justify-between">
-          <note-component />
+          <note-component :totalAccidents="totalAccidents" :fatalities="totalFatalities" :minorInjury="minorInjury" :seriousInjur="seriousInjury" :year="year"/>
         </div>
       </div>
     </div>
